@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+
+
+{% block title %}Document Generator{% endblock title %}
+
+
+{% block body_block %}
+
+    {% if search %}
+        <div class="mx-auto p-2">
+            <h1>
+                Type away and the machine will provide relevant cases
+            </h1>
+            <form method="POST">  
+                {% csrf_token %}  
+                {{ form.as_p }} 
+                <input type="submit" value="Search" class="btn btn-primary">
+            </form>  
+        </div>
+    
+    {% else %}
+        <div class="mx-auto p-2">
+            <h1>
+                Here are the results
+            </h1>
+            <p>
+                {{ cases }}
+            <p>
+        </div>
+    {% endif %}
+
+{% endblock body_block %}
