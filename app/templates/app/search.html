@@ -23,9 +23,16 @@
             <h1>
                 Here are the results
             </h1>
-            <p>
-                {{ cases }}
-            <p>
+            <ul>
+            {% for case in cases %}
+                <li>
+                    {{ case.name }}
+                    <br>
+                    <a href={{ case.URL}}>{{ case.URL}}</a>
+                </li>
+                <br>
+            {% endfor %}
+            </ul>
         </div>
     {% endif %}
 

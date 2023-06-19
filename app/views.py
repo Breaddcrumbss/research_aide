@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import SearchForm
-from .utils import classify
+from .utils import classify, find_cases
 
 # Create your views here.
 def index(request):
@@ -13,8 +13,9 @@ def search(request):
         form = SearchForm(data=request.POST)
         if form.is_valid():
             tag = classify(request.POST.get('input'))       # Pass tag into the function to find cases
+            cases = find_cases(tag)
             return render(request, 'app/search.html', {
-                'cases': tag,       # To change to cases
+                'cases': cases,       # To change to cases
                 'search': False
             })
 
