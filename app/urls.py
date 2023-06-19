@@ -10,4 +10,5 @@ urlpatterns = [
     path('chatbot', views.chatbot, name="chatbot"),
     path('response', views.response, name="response"),
     path('refresh', views.refresh, name="refresh"),
+    path('summarizer', views.summarizer, name="summarizer"),
 ]

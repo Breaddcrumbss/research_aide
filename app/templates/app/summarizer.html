@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %} {% block title %}Law ChatBot{% endblock title %}
+{% block body_block %}
+
+<form>
+  {% csrf_token %}
+  <input type="text" class="form-control" name="user_input" />
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  <button type="button" onclick="refresh()" class="btn btn-danger mt-3">
+    Refresh
+  </button>
+</form>
+
+{% if messages %}
+<div>{{ messages}}</div>
+{% endif %}
+
+<script>
+  const form = document.querySelector("form");
+
+  async function refresh() {
+    await fetch("/app/refresh", {
+      method: "POST",
+    });
+
+    location.reload();
+  }
+
+  async function submitForm(event) {
+
+
+    const user_input = form.elements["user_input"].value;
+
+    const rawResponse = await fetch("/app/summarizer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        headers: { "X-CSRFToken": "{{csrf_token}}" },
+      },
+      body: JSON.stringify({ user_input }),
+    });
+
+
+  }
+  form.addEventListener("submit", submitForm);
+</script>
+
+{% endblock body_block %}
