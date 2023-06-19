@@ -13,8 +13,8 @@ def classify(text):
     return predicted_labels
 
 def find_cases(label):
-    df = pd.read_csv(os.path.join(settings.MEDIA_ROOT, 'files/Name-URL-Catchword.tsv'), sep='\t')
-    matches = df[df['Simple Catchwords'] == label][['Name', 'URL', 'Case Text']].head(10)
+    df = pd.read_csv(os.path.join(settings.MEDIA_ROOT, 'files/split_cleaned_data.tsv'), sep='\t')
+    matches = df[df['Simple Catchwords'] == label][['Name', 'URL', 'Case Text']].head(5)
     cases = []
     for index, row in matches.iterrows():
         case_info = {}

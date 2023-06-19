@@ -23,12 +23,18 @@
             <h1>
                 Here are the results
             </h1>
+            <h2>
+                Tag: {{ tag }}
+
+            </h2>
             <ul>
             {% for case in cases %}
                 <li>
                     {{ case.name }}
                     <br>
                     <a href={{ case.URL}}>{{ case.URL}}</a>
+                    <br>
+                    <input type="submit" value="Summarize" class='btn btn-secondary'>
                 </li>
                 <br>
             {% endfor %}
