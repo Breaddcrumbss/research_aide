@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import SearchForm
+<<<<<<< HEAD
 from .utils import classify
 import openai 
 from dotenv import dotenv_values
@@ -11,6 +12,9 @@ from django.http import JsonResponse
 
 config = dotenv_values(".env")
 openai.api_key = config.get("OPENAI_API_KEY")
+=======
+from .utils import classify, find_cases
+>>>>>>> f7c53c21199e51c633cf4f7e8920b194596b22e7
 
 # Create your views here.
 def index(request):
@@ -23,8 +27,9 @@ def search(request):
         form = SearchForm(data=request.POST)
         if form.is_valid():
             tag = classify(request.POST.get('input'))       # Pass tag into the function to find cases
+            cases = find_cases(tag)
             return render(request, 'app/search.html', {
-                'cases': tag,       # To change to cases
+                'cases': cases,       # To change to cases
                 'search': False
             })
 
