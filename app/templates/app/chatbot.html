@@ -1,0 +1,140 @@
+{% extends 'app/base.html' %} {% block title %}Law ChatBot{% endblock title %}
+{% block body_block %}
+
+<form>
+  {% csrf_token %}
+  <section style="background-color: #eee">
+    <div class="py-4" >
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center p-3"
+              style="border-top: 4px solid #ffa900"
+            >
+              <h5 class="mb-0">ChatBots</h5>
+              <div class="d-flex flex-row align-items-center">
+                <button type="button" onclick="refresh()" class="btn btn-danger">
+                  Refresh
+                </button>
+              </div>
+            </div>
+            <div 
+              class="card-body overflow-auto"
+              data-mdb-perfect-scrollbar="true"
+              style="position: relative; height: 400px"
+              id="element"
+            >
+              <div style="min-height:300px">
+                {% if messages %}
+                {% for message in messages %}
+                  {% if message.User %}
+                  <div class="d-flex justify-content-between">
+                    <p class="small mb-1 text-muted"></p>
+                    <p class="small mb-1">User</p>
+                  </div>
+                  <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                    <div>
+                      <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-warning">{{message.User}}</p>
+                    </div>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: 100%;">
+                  </div>
+  
+                  {% else %}
+                  <div class="d-flex justify-content-between">
+                    <p class="small mb-1">Assistant</p>
+                  </div>
+                  <div class="d-flex flex-row justify-content-start">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
+                      alt="avatar 1"
+                      style="width: 45px; height: 100%"
+                    />
+                    <div>
+                      <p
+                        class="small p-2 ms-3 mb-3 rounded-3"
+                        style="background-color: #f5f6f7"
+                      >
+                        {{message.Assistant}}
+                      </p>
+                    </div>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              
+            
+
+              
+
+            </div>
+            
+
+            <div
+              class="card-footer text-muted d-flex justify-content-start align-items-center p-3"
+            >
+              <div class="input-group mb-0">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Type message"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                  name="user_input"
+                />
+                <button
+                  class="btn btn-warning"
+                  type="submit"
+                  id="button-addon2"
+                  style="padding-top: 0.55rem"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<script>
+  const form = document.querySelector("form");
+
+  const card = document.querySelector("#element")
+  card.scrollTop = element.scrollHeight;
+
+  async function refresh() {
+    await fetch("/app/refresh", {
+      method: "POST",
+    });
+
+    location.reload();
+  }
+
+  async function submitForm(event) {
+    event.preventDefault();
+
+    const user_input = form.elements["user_input"].value;
+
+    const rawResponse = await fetch("/app/chatbot", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        headers: { "X-CSRFToken": "{{csrf_token}}" },
+      },
+      body: JSON.stringify({ user_input }),
+    });
+
+    if (rawResponse) {
+      location.reload();
+    }
+  }
+  form.addEventListener("submit", submitForm);
+</script>
+
+{% endblock body_block %}
+
+

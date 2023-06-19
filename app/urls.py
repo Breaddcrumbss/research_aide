@@ -6,5 +6,8 @@ app_name = 'app'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('search', views.search, name='search')
+    path('search', views.search, name='search'),
+    path('chatbot', views.chatbot, name="chatbot"),
+    path('response', views.response, name="response"),
+    path('refresh', views.refresh, name="refresh"),
 ]
