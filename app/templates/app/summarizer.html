@@ -1,13 +1,15 @@
 {% extends 'app/base.html' %} {% block title %}Law ChatBot{% endblock title %}
 {% block body_block %}
 
-<form>
+<h1>Sumarizer</h1>
+
+<form method="POST">
   {% csrf_token %}
   <input type="text" class="form-control" name="user_input" />
   <button type="submit" class="btn btn-primary mt-3">Submit</button>
-  <button type="button" onclick="refresh()" class="btn btn-danger mt-3">
-    Refresh
-  </button>
+  {% comment %} <button type="button" onclick="refresh()" class="btn btn-danger mt-3"> {% endcomment %}
+    {% comment %} Refresh
+  </button> {% endcomment %}
 </form>
 
 {% if messages %}
@@ -17,15 +19,15 @@
 <script>
   const form = document.querySelector("form");
 
-  async function refresh() {
+  {% comment %} async function refresh() {
     await fetch("/app/refresh", {
       method: "POST",
     });
 
     location.reload();
-  }
+  } {% endcomment %}
 
-  async function submitForm(event) {
+  {% comment %} async function submitForm(event) {
 
 
     const user_input = form.elements["user_input"].value;
@@ -41,7 +43,7 @@
 
 
   }
-  form.addEventListener("submit", submitForm);
+  form.addEventListener("submit", submitForm); {% endcomment %}
 </script>
 
 {% endblock body_block %}
