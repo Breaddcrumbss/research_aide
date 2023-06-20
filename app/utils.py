@@ -61,7 +61,7 @@ def summarizerHelper(str_array):
         # then split into array and call recursively
         output=""
         for item in str_array:
-            prompt =  f"As a lawyer, summarize this text in professional way for other lawyer to refer to the law case as a third view.: {item}"
+            prompt =  f"As a lawyer, summarize this text in professional way for other lawyers to refer to the law case in a third person perspective.: {item}"
             res = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
@@ -92,3 +92,11 @@ def summarize_law_case(input):
     
     ## then do summarizer here
     return summarizerHelper(input)
+
+
+def get_summary():
+    df = pd.read_csv(os.path.join(settings.MEDIA_ROOT, 'files/summaries.csv'))
+    names = df['Name'].tolist()
+    summaries = df['Summary'].tolist()
+    case_dict = {key:value for key, value in zip(names, summaries)}
+    return case_dict

@@ -36,7 +36,20 @@
                 <div class="card-header">Case</div>
                 <div class="card-body">
                   <h5 class="card-title">{{ case.name }}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {% if case.name in summaries %}
+                    
+                        {% for key, value in summaries.items %} 
+                            {% if case.name == key %}
+                                <p class="card-text">{{ value }}</p>
+                            {% endif %}
+                        {% endfor %}
+                     
+                    {% else %}
+                        <p class="card-text">AI-generated summary goes here</p>
+                    {% endif %}
+                  
+
+
                 </div>
                 <div class="card-body">
                     <a href={{ case.URL}} class="btn btn-dark">Go to Case</a>

@@ -12,7 +12,7 @@ prompt = '''two parties have signed a contract, but it was agreed that a guarant
 
 df = pd.read_csv('../media/files/split_cleaned_data.tsv', sep='\t', converters={'Case Text': pd.eval})
 df = df.drop_duplicates(subset='Name')
-matches = df[df['Simple Catchwords'] == 'contract '][['Name', 'Case Text']].head(1)
+matches = df[df['Simple Catchwords'] == 'contract '][['Name', 'Case Text']].head(3)
 
 print(matches)
 cases = []          #list of dicts with case text
@@ -23,18 +23,20 @@ for index, row in matches.iterrows():
     cases.append(case_info)
 
 # # CG can change these parameters
-case_index = 0      # index out of 5 of the case texts
+case_index = 2      # index out of 5 of the case texts
 para = 3            # to control until which paragraph to summarise
 
 # # Input for the summarise function (str array). I removed the split string call in the summarize function because already split
 # # Print case to test see if its the correct structure
-case = cases[case_index]['text']
+case = cases[case_index]['name']
 
+for case in cases:
+    print(case['name'])
 # print(len(case))
 # print("======")
 # print(case[0])
 # print("========")
-print(summarize_law_case(case))
+# print(summarize_law_case(case))
 
 
 # # below for testing

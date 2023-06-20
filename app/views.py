@@ -13,7 +13,7 @@ config = dotenv_values(".env")
 openai.api_key = config.get("OPENAI_API_KEY")
 
 
-from .utils import classify, find_cases
+from .utils import classify, find_cases, get_summary
 
 
 # Create your views here.
@@ -28,9 +28,11 @@ def search(request):
         if form.is_valid():
             tag = classify(request.POST.get('input'))       # Pass tag into the function to find cases
             cases = find_cases(tag)
+            summaries = get_summary()
             return render(request, 'app/search.html', {
                 'tag': tag.title(),
-                'cases': cases,       # To change to cases
+                'cases': cases,
+                'summaries': summaries,
                 'search': False
             })
 
