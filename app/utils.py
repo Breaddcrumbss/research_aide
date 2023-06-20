@@ -19,7 +19,9 @@ def classify(text):
 
 def find_cases(label):
     df = pd.read_csv(os.path.join(settings.MEDIA_ROOT, 'files/split_cleaned_data.tsv'), sep='\t')
+    df = df.drop_duplicates(subset='Name')
     matches = df[df['Simple Catchwords'] == label][['Name', 'URL', 'Case Text']].head(5)
+    
     cases = []
     for index, row in matches.iterrows():
         case_info = {}
@@ -78,7 +80,7 @@ def summarize_law_case(input):
     ## input here will be law case
     
     ## then here do split string
-    arr = split_string(input)
+    # arr = split_string(input)
     
     ## then do summarizer here
-    return summarizerHelper(arr)
+    return summarizerHelper(input)

@@ -11,13 +11,9 @@ from django.http import JsonResponse
 
 config = dotenv_values(".env")
 openai.api_key = config.get("OPENAI_API_KEY")
-<<<<<<< HEAD
-from .utils import classify, find_cases
-=======
 
 from .utils import classify, find_cases
 
->>>>>>> cg
 
 # Create your views here.
 def index(request):
