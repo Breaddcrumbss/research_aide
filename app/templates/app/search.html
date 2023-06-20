@@ -8,51 +8,47 @@
 
     {% if search %}
         <div class="mx-5 p-2">
-            <h1 class='d-flex justify-content-center mb-5'>
-                Type away and the machine will provide relevant cases
-            </h1>
-            <form method="POST">  
-                {% csrf_token %}  
-                {{ form.as_p }}
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <input type="submit" value="Search" class="btn btn-lg btn-success">
-                <div>
-            </form>  
+            <div class="card text-bg-dark mb-3" style="max-width: 100%;">
+                <div class="card-header">Search Feature</div>
+                <div class="card-body">
+                  <h4 class="card-title">Input your query to search for relevant cases</h4>
+                  <form method="POST" class="mt-4">  
+                    {% csrf_token %}  
+                    {{ form.as_p }}
+                    <div class="d-grid col-2 mx-auto">
+                        <input type="submit" value="Search" class="btn btn-lg btn-light">
+                    <div>
+                </form>  
+                </div>
+              </div>
         </div>
     
     {% else %}
-        <div class="mx-auto p-2">
-            <h1 class='d-flex justify-content-center'>
-                Related Cases
-            </h1>
-            <h5 class='d-flex justify-content-center mb-5'>
-                Tag: {{ tag }}
+    <div class="mx-5 p-2">
+        <div class="card text-bg-dark mb-3" style="max-width: 100%;">
+            <div class="card-header">Related Cases</div>
+            <div class="card-body">
+              <h4 class="card-title">Tag: {{ tag }}</h4>
 
-            </h5>
-            {% for case in cases %}
-                <div class="card w-auto mb-5 bg-secondary-subtle">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ case.name }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href={{ case.URL}} class="btn btn-success">Go to Case</a>
-                        <a href='#' class="btn btn-success">Summarize</a>
-                        {% comment %} <input type="submit" value="Summarize" class='btn btn-secondary rm-10'> {% endcomment %}
-                    </div>
+
+              {% for case in cases %}
+              <div class="card text-bg-light my-4" style="max-width: 100%;">
+                <div class="card-header">Case</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ case.name }}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-            {% endfor %}
-            {% comment %} <ul>
-            {% for case in cases %}
-                <li>
-                    {{ case.name }}
-                    <br>
-                    <a href={{ case.URL}}>{{ case.URL}}</a>
-                    <br>
-                    <input type="submit" value="Summarize" class='btn btn-secondary'>
-                </li>
-                <br>
-            {% endfor %}
-            </ul> {% endcomment %}
-        </div>
-    {% endif %}
+                <div class="card-body">
+                    <a href={{ case.URL}} class="btn btn-dark">Go to Case</a>
+                    <a href='#' class="btn btn-secondary">Summarize</a>
+                </div>
+              </div>
+              {% endfor %}
+            
+            </div>
+          </div>
+    </div>
+        
+    {% endif%}
 
 {% endblock body_block %}
