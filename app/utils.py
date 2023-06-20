@@ -30,6 +30,14 @@ def find_cases(label):
     
     return cases
 
+def split_string(input_string):
+    # input a law case as a long string
+    # @return a string array [law case part 1, law case part 2, law case part 3 .....]
+    
+    n = 2000 
+    return [input_string[i: i + n] for i in range(0, len(input_string), n)]
+    
+
 def summarizerHelper(str_array):
     if (len(str_array) <= 1) :
         user_input = str_array[0]
@@ -59,7 +67,18 @@ def summarizerHelper(str_array):
             output += res["choices"][0]["text"]
         
         ## split into string array (luke function) 
-        new_array = split_arr(output)
+        new_array = split_string(output)
         return summarizerHelper(new_array)
 
         
+# Luke only need to user this function
+# @return a summary of a law case
+# You have to "manually" get a law case, input this function to get the summary
+def summarize_law_case(input):
+    ## input here will be law case
+    
+    ## then here do split string
+    arr = split_string(input)
+    
+    ## then do summarizer here
+    return summarizerHelper(arr)
