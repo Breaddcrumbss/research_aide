@@ -1,12 +1,14 @@
 {% extends 'app/base.html' %} {% block title %}Law ChatBot{% endblock title %}
 {% block body_block %}
 
-<h1>Sumarizer</h1>
+<h1 class='d-flex justify-content-center'>Summarizer</h1>
 
 <form method="POST">
   {% csrf_token %}
   <input type="text" class="form-control" name="user_input" />
-  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <button type="submit" class="btn btn-lg btn-primary mt-3">Summarize</button>
+  </div>
   {% comment %} <button type="button" onclick="refresh()" class="btn btn-danger mt-3"> {% endcomment %}
     {% comment %} Refresh
   </button> {% endcomment %}

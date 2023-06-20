@@ -7,27 +7,40 @@
 {% block body_block %}
 
     {% if search %}
-        <div class="mx-auto p-2">
-            <h1>
+        <div class="mx-5 p-2">
+            <h1 class='d-flex justify-content-center mb-5'>
                 Type away and the machine will provide relevant cases
             </h1>
             <form method="POST">  
                 {% csrf_token %}  
-                {{ form.as_p }} 
-                <input type="submit" value="Search" class="btn btn-primary">
+                {{ form.as_p }}
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <input type="submit" value="Search" class="btn btn-lg btn-success">
+                <div>
             </form>  
         </div>
     
     {% else %}
         <div class="mx-auto p-2">
-            <h1>
-                Here are the results
+            <h1 class='d-flex justify-content-center'>
+                Related Cases
             </h1>
-            <h2>
+            <h5 class='d-flex justify-content-center mb-5'>
                 Tag: {{ tag }}
 
-            </h2>
-            <ul>
+            </h5>
+            {% for case in cases %}
+                <div class="card w-auto mb-5 bg-secondary-subtle">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ case.name }}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href={{ case.URL}} class="btn btn-success">Go to Case</a>
+                        <a href='#' class="btn btn-success">Summarize</a>
+                        {% comment %} <input type="submit" value="Summarize" class='btn btn-secondary rm-10'> {% endcomment %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% comment %} <ul>
             {% for case in cases %}
                 <li>
                     {{ case.name }}
@@ -38,7 +51,7 @@
                 </li>
                 <br>
             {% endfor %}
-            </ul>
+            </ul> {% endcomment %}
         </div>
     {% endif %}
 
