@@ -45,4 +45,4 @@ case = cases[case_index]['text'][:para]
 # summary_df.columns = ['Name', "Summary"]
 
 # # Save to files folder
-# summary_df.to_csv('../media/files/case_summary.tsv', encoding='UTF-8', sep='\t')
+# summary_df.to_csv('../media/files/.tsv', encoding='UTF-8', sep='\t')
