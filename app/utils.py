@@ -2,6 +2,11 @@ import os
 import pickle
 import pandas as pd
 from django.conf import settings
+import openai
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
+openai.api_key = config.get("OPENAI_API_KEY")
 
 
 def classify(text):
@@ -25,3 +30,36 @@ def find_cases(label):
     
     return cases
 
+def summarizerHelper(str_array):
+    if (len(str_array) <= 1) :
+        user_input = str_array[0]
+        prompt = f"As a lawyer, summarize this text in professional way for other lawyer to refer to the law case as a third view.: {user_input}"
+
+        res = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            temperature=0.5,
+            max_tokens=1000
+        )
+        return res["choices"][0]["text"]
+    else:
+        # more than one element in array
+        # we need to summarize everything in the array
+        # then join back into a string
+        # then split into array and call recursively
+        output=""
+        for item in str_array:
+            prompt =  f"As a lawyer, summarize this text in professional way for other lawyer to refer to the law case as a third view.: {item}"
+            res = openai.Completion.create(
+                model="text-davinci-003",
+                prompt=prompt,
+                temperature=0.5,
+                max_tokens=1000
+            )
+            output += res["choices"][0]["text"]
+        
+        ## split into string array (luke function) 
+        new_array = split_arr(output)
+        return summarizerHelper(new_array)
+
+        

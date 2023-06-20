@@ -11,7 +11,13 @@ from django.http import JsonResponse
 
 config = dotenv_values(".env")
 openai.api_key = config.get("OPENAI_API_KEY")
+<<<<<<< HEAD
 from .utils import classify, find_cases
+=======
+
+from .utils import classify, find_cases
+
+>>>>>>> cg
 
 # Create your views here.
 def index(request):
@@ -120,11 +126,11 @@ def response(request):
 
 
 def summarizer(request):
-    res=""
+    respond=None
     if request.method == "POST":
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
-        user_input = body["user_input"]
+        # body_unicode = request.body.decode('utf-8')
+        # body = json.loads(body_unicode)
+        user_input = request.POST.get("user_input")
         prompt = f"As a lawyer, summarize this text in professional way for other lawyer to refer to the law case as a third view.: {user_input}"
 
         res = openai.Completion.create(
@@ -134,8 +140,9 @@ def summarizer(request):
             max_tokens=1000
         )
         print(res)
+        respond = res["choices"][0]["text"]
         
 
-    return render(request, 'app/summarizer.html', {"messages": res})
+    return render(request, 'app/summarizer.html', {"messages": respond})
 
 
