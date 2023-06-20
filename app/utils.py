@@ -44,13 +44,15 @@ def summarizerHelper(str_array):
     if (len(str_array) <= 1) :
         user_input = str_array[0]
         prompt = f"As a lawyer, summarize this text in professional way for other lawyer to refer to the law case as a third view.: {user_input}"
-
+        # print("final prompt", prompt)
         res = openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt,
             temperature=0.5,
             max_tokens=1000
         )
+        # print("Current -> ", res)
+        output = res["choices"][0]["text"]
         return res["choices"][0]["text"]
     else:
         # more than one element in array
@@ -67,9 +69,15 @@ def summarizerHelper(str_array):
                 max_tokens=1000
             )
             output += res["choices"][0]["text"]
+            # print("in recursive")
+            # print("Current -> ", res)
+            # print(output)
         
+        # print("exit for loop")
         ## split into string array (luke function) 
         new_array = split_string(output)
+        # print("new array input", len(new_array))
+        # print("final array is", new_array)
         return summarizerHelper(new_array)
 
         

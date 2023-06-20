@@ -12,6 +12,7 @@ from django.http import JsonResponse
 config = dotenv_values(".env")
 openai.api_key = config.get("OPENAI_API_KEY")
 
+
 from .utils import classify, find_cases
 
 

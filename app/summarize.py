@@ -3,8 +3,8 @@ from utils import summarizerHelper, summarize_law_case, find_cases
 import openai 
 from dotenv import dotenv_values
 
-# config = dotenv_values(".env")
-# openai.api_key = config.get("OPENAI_API_KEY")
+config = dotenv_values(".env")
+openai.api_key = config.get("OPENAI_API_KEY")
 
 # this is what we should input in the search bar as example to get the cases we summarised
 prompt = '''two parties have signed a contract, but it was agreed that a guarantor must also sign the contract for it to be valid. 
@@ -12,8 +12,9 @@ prompt = '''two parties have signed a contract, but it was agreed that a guarant
 
 df = pd.read_csv('../media/files/split_cleaned_data.tsv', sep='\t', converters={'Case Text': pd.eval})
 df = df.drop_duplicates(subset='Name')
-matches = df[df['Simple Catchwords'] == 'contract '][['Name', 'Case Text']].head(5)
+matches = df[df['Simple Catchwords'] == 'contract '][['Name', 'Case Text']].head(1)
 
+print(matches)
 cases = []          #list of dicts with case text
 for index, row in matches.iterrows():
     case_info = {}
@@ -21,13 +22,19 @@ for index, row in matches.iterrows():
     case_info['text'] = row['Case Text']
     cases.append(case_info)
 
-# CG can change these parameters
+# # CG can change these parameters
 case_index = 0      # index out of 5 of the case texts
 para = 3            # to control until which paragraph to summarise
 
-# Input for the summarise function (str array). I removed the split string call in the summarize function because already split
-# Print case to test see if its the correct structure
-case = cases[case_index]['text'][:para]
+# # Input for the summarise function (str array). I removed the split string call in the summarize function because already split
+# # Print case to test see if its the correct structure
+case = cases[case_index]['text']
+
+# print(len(case))
+# print("======")
+# print(case[0])
+# print("========")
+print(summarize_law_case(case))
 
 
 # # below for testing
