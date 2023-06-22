@@ -1,9 +1,166 @@
 <!DOCTYPE html>
-{% extends 'app/base.html' %}
-
-{% block title %}Home{% endblock title %}
+{% extends 'app/base.html' %} 
+{% block title %}Home{% endblock title %} 
 
 {% block body_block %}
 
+<div class="mx-5 p-2">
+  <div class="card text-bg-dark mb-3" style="max-width: 100%">
+    <div class="card-header">Features of LawBot</div>
+    <div class="card-body">
+      <h4 class="card-title">LawBot</h4>
 
-{% endblock %}
+      <h5 class="card-title">Vision for the future</h5>
+
+      <p class="card-text">Search engines like LawNet search using the individual words, leading to 
+        frustration when one does not know the exact terms to use. We imagine a system where a lawyers 
+        can simply be as specific and detailed as possible in their searches, providing as many facts 
+        as possible, and from that obtain cases which are of the same category. A search algorithm like 
+        this would first try to categories the input text using chains of catchwords, such as:
+        [Charities — Charity proceedings — Interpretation of s 32 of the Charities Act 1994]
+        </p>
+
+      <p class="card-text">From there, the algorithm will conduct a search on existing cases and their 
+        catchwords to retrieve the most relevant cases, down to the most nuanced categorisation. Young 
+        lawyers will be better equipped to find and learn about potentially esoteric categories. A classification 
+        algorithm like this will also benefit law reporting as it is automatic and systematic, leaving no room 
+        for error when tagging a case.
+      </p>
+
+      <p class="card-text">An AI-summarizer is beneficial on multiple levels. A brief summary of a long 
+        text is always welcome, but we envision the ability to tailor each summary given what the user wants
+         to focus on. In a case of five issues, perhaps one may just want a summary of only one of them. Tailored 
+         summaries using AI greatly increase the efficieny of research and allow the lawyers to craft precise 
+         arguments. Headnotes for law reports can thus be automatically generated using this technology.
+      </p>
+
+      <p class="card-text">
+        The culmination of all these ideas lies in a chatbot, one that is connected to our legal database, 
+        ensuring its ability to retrieve relevant local cases, and back up its statements with pinpoint citations. 
+        With additional training on legal data, it will help even the most experienced lawyer formulate arguments 
+        and test strategies in prolonged conversation.
+      </p>
+
+      <div class="card text-bg-light my-4" style="max-width: 100%">
+        <div class="card-header">Chatbot</div>
+        <div class="card-body">
+          <h5 class="card-title">
+            A lawyer can interact with LawBot to get help during research
+          </h5>
+          <p class="card-text">
+            The AI bot will act like a lawyer and answer every question professionally.
+            You can even have a prolonged discussion with it
+          </p>
+          <br />
+          <h5 class="card-title">Example input :</h5>
+          <p class="card-text">
+            What is a tripartite agreement?
+          </p>
+
+          <p class="card-text">
+            What happens if a guarantor doesnt sign?
+          </p>
+          <p class="card-text">
+            Are there any cases on this?
+          </p>
+          
+        </div>
+      </div>
+
+      <div class="card text-bg-light my-4" style="max-width: 100%">
+        <div class="card-header">Summarizer</div>
+        <div class="card-body">
+          <h5 class="card-title">
+            An AI summarizer which will be able to give a summary of law cases succinctly
+          </h5>
+          <p class="card-text">
+            To bolster current legal databases, this summarizer can be used to tag and provide simple summaries for each case when reported.
+          </p>
+          <br />
+          <h5 class="card-title">Example input :</h5>
+          <p class="card-text">
+            Section 1. Penalty — In all cases in which any constitutional or
+            legal provisions requires Philippine or any other specific
+            citizenship as a requisite for the exercise or enjoyment of a right,
+            franchise or privilege, any citizen of the Philippines or of any
+            other specific country who allows his name or citizenship to be used
+            for the purpose of evading such provision, and any alien or
+            foreigner profiting thereby, shall be punished by imprisonment for
+            not less than five nor more than fifteen years, and by a fine of not
+            less than the value of the right franchise or privilege, which is
+            enjoyed or acquired in violation of the provisions hereof but in no
+            case less than five thousand pesos. The fact that the citizen of the
+            Philippines or of any specific country charged with a violation of
+            this Act had, at the time of the acquisition of his holdings in the
+            corporations or associations referred to in section two of this Act,
+            no real or personal property, credit or other assets the value of
+            which shall at least be equivalent to said holdings, shall be
+            evidence of a violation of this Act.1 
+          </p>
+          <p class="card-text">
+            Section 2. Simulation of
+            minimum capital stock — In all cases in which a constitutional or
+            legal provision requires that, in order that a corporation or
+            association may exercise or enjoy a right, franchise or privilege,
+            not less than a certain per centum of its capital must be owned by
+            citizens of the Philippines or of any other specific country, it
+            shall be unlawful to falsely simulate the existence of such minimum
+            stock or capital as owned by such citizens, for the purpose of
+            evading said provision. The president or managers and directors or
+            trustees of corporations or associations convicted of a violation of
+            this section shall be punished by imprisonment of not less than five
+            nor more than fifteen years, and by a fine not less than the value
+            of the right, franchise or privilege, enjoyed or acquired in
+            violation of the provisions hereof but in no case less than five
+            thousand pesos.2
+          </p>
+        </div>
+      </div>
+
+      <div class="card text-bg-light my-4" style="max-width: 100%">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <h5 class="card-title">
+            A lawyer can describe facts or input an entire cases to search for similar legal cases
+          </h5>
+          <p class="card-text">
+            By gathering more than 5,000 cases from elitigation.sg, we are able to use a machine learning 
+            algorithm to predict the class of cases given any text input. Cases with similar tags will be retrieved 
+            and shown, along with an AI-generated summary
+          </p>
+          <br />
+          <h5 class="card-title">Example input :</h5>
+          <p class="card-text">
+            My client bought a car from a second-hand retailer. He agreed to buy
+            the car for 10000 dollars but it was only worth 5000 dollars. He was
+            told that the car was manufactured in France but it was actually
+            manufactured in Indonesia. He feels he was cheated out of his money
+            and wishes to sue to seller to get his money back despite having a
+            contract
+          </p>
+
+          <br />
+          <h5 class="card-title">Example input :</h5>
+          <p class="card-text">
+            the settlor settled certain assets on trust for the first claimant
+            for life, with remainder on her death to the second claimant. The
+            trust fund and income were subject to an overriding power of
+            appointment in favour of an appointed class. The claimants promoted
+            a scheme of arrangement to convert the second claimant's interest in
+            remainder to a life interest with remainders over. They obtained the
+            consent of the adult members of the appointed class to the proposed
+            arrangement, and sought the court's consent on behalf of the child
+            members pursuant to its discretion under section 1(1)(a) of the
+            Variation of Trusts Act 1958 to approve an arrangement on behalf of
+            a child having “an interest” under a trust. The power of appointment
+            being a mere power rather than a trust power, the question arose
+            whether the child members of the class had “an interest” under the
+            trust for the purposes of section 1(1).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>
