@@ -9,9 +9,9 @@
     {% if search %}
         <div class="mx-5 p-2">
             <div class="card text-bg-dark mb-3" style="max-width: 100%;">
-                <div class="card-header">Search Feature</div>
+                <div class="card-header">Legal Taxonomizer</div>
                 <div class="card-body">
-                  <h4 class="card-title">Input your query to search for relevant cases</h4>
+                  <h4 class="card-title">Input your query to search for relevant cases based on catchword prediction</h4>
                   <form method="POST" class="mt-4">  
                     {% csrf_token %}  
                     {{ form.as_p }}
@@ -53,7 +53,7 @@
                 </div>
                 <div class="card-body">
                     <a href={{ case.URL}} class="btn btn-dark">Go to Case</a>
-                    <a href='#' class="btn btn-secondary">Summarize</a>
+                    {% comment %} <a href='#' class="btn btn-secondary disabled">Summarize</a> {% endcomment %}
                 </div>
               </div>
               {% endfor %}
