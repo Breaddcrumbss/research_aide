@@ -13,6 +13,9 @@
 
             >
               <h5 class="mb-0">Research Assistant</h5>
+              <div class="spinner-border loading d-none"  id="loading" role="status">
+                <span class="visually-hidden ">Loading...</span>
+              </div>
               <div class="d-flex flex-row align-items-center">
                 <button type="button" onclick="refresh()" class="btn btn-danger">
                   Refresh
@@ -25,6 +28,7 @@
               style="position: relative; height: 400px"
               id="element"
             >
+            
               <div style="min-height:300px">
                 {% if messages %}
                 {% for message in messages %}
@@ -105,6 +109,7 @@
   const card = document.querySelector("#element")
   card.scrollTop = element.scrollHeight;
 
+
   async function refresh() {
     await fetch("/app/refresh", {
       method: "POST",
@@ -117,6 +122,8 @@
     event.preventDefault();
 
     const user_input = form.elements["user_input"].value;
+
+
 
     const rawResponse = await fetch("/app/chatbot", {
       method: "POST",
